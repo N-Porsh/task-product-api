@@ -1,0 +1,9 @@
+# Here are all the folders ignored by git
+.cfg
+.idea
+.key
+.vagrant
+service/api-task/vendor
+node_modules
+._.DS_Store
+.DS_Store

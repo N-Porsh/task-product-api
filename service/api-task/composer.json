@@ -1,0 +1,22 @@
+{
+  "require": {
+    "slim/slim": "^3.0",
+    "monolog/monolog": "^1.18",
+    "justinrainbow/json-schema":"~2.0"
+  },
+  "require-dev": {
+    "phpunit/phpunit": "5.4.*"
+  },
+  "archive": {
+    "exclude": ["vendor", ".DS_Store", "*.log"]
+  },
+  "autoload": {
+    "psr-4": {
+      "Models\\": "src/models",
+      "Validator\\": "src/validator"
+    }
+  },
+  "autoload-dev": {
+    "psr-4": { "Tests\\": "tests/" }
+  }
+}

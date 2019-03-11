@@ -1,0 +1,165 @@
+{
+    "swagger": "2.0",
+    "host": "localhost",
+    "consumes": [
+        "application/json"
+    ],
+    "produces": [
+        "application/json"
+    ],
+    "info": {
+        "version": "1.0.0",
+        "title": "API Test assignment"
+    },
+    "paths": {
+        "api/v1/products": {
+            "get": {
+                "description": "Gets all products",
+                "responses": {
+                    "200": {
+                        "description": "Successful response",
+                        "schema": {
+                            "title": "ArrayOfProducts",
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/Product"
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Indicates problem on a server"
+                    }
+                }
+            },
+            "post": {
+                "description": "Add new product",
+                "parameters": [
+                    {
+                        "name": "product",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/Product"
+                        }
+                    }
+                ],
+                "responses": {
+                    "201": {
+                        "description": "Indicates that product was successfully created",
+                        "schema": {
+                            "$ref": "#/definitions/Product"
+                        }
+                    },
+                    "400": {
+                        "description": "Indicates that the user sent invalid request"
+                    },
+                    "500": {
+                        "description": "Indicates problem on a server"
+                    }
+                }
+            },
+            "delete": {
+                "description": "Delete all products",
+                "responses": {
+                    "200": {
+                        "description": "Indicates that product was successfully deleted"
+                    },
+                    "400": {
+                        "description": "Indicates that the user sent invalid request"
+                    },
+                    "500": {
+                        "description": "Indicates problem on a server"
+                    }
+                }
+            }
+        },
+        "api/v1/products/{product_name}": {
+            "get": {
+                "description": "Gets products by name",
+                "responses": {
+                    "200": {
+                        "description": "Product found",
+                        "schema": {
+                            "$ref": "#/definitions/Product"
+                        }
+                    },
+                    "404": {
+                        "description": "Indicates that the product not found with given product_name"
+                    }
+                },
+                "parameters": [
+                    {
+                        "name": "product_name",
+                        "in": "path",
+                        "type": "string",
+                        "required": true
+                    }
+                ]
+            }
+        },
+        "api/v1/products/{product_id}": {
+            "put": {
+                "description": "Update product information by product id",
+                "responses": {
+                    "200": {
+                        "description": "Product updated successfully"
+                    },
+                    "404": {
+                        "description": "Indicates that the product not found with given ID"
+                    },
+                    "500": {
+                        "description": "Indicates problem on a server"
+                    }
+                },
+                "parameters": [
+                    {
+                        "name": "product_id",
+                        "in": "path",
+                        "type": "number",
+                        "required": true
+                    }
+                ]
+            },
+            "delete": {
+                "description": "Delete product by ID",
+                "responses": {
+                    "200": {
+                        "description": "Product successfully deleted"
+                    },
+                    "404": {
+                        "description": "Indicates that the product not found with given ID"
+                    },
+                    "500": {
+                        "description": "Indicates problem on a server"
+                    }
+                },
+                "parameters": [
+                    {
+                        "name": "product_id",
+                        "in": "path",
+                        "type": "number",
+                        "required": true
+                    }
+                ]
+            }
+        }
+    },
+    "definitions": {
+        "Product": {
+            "type": "object",
+            "properties": {
+                "name": {
+                    "type": "string",
+                    "maxLength": 100
+                },
+                "price": {
+                    "type": "number",
+                    "minimum" : 0,
+                    "multipleOf": 0.01
+                }
+            },
+            "additionalProperties": false,
+            "required": ["name", "price"]
+        }
+    }
+}
