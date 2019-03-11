@@ -170,6 +170,8 @@ request body:
   "non_existing": "notebook"
 }
 ```
+Status code: *400*
+
 Response example:
 ```json
 {
@@ -193,3 +195,8 @@ Response example:
   ]
 }
 ```
+
+#### Running Unit test:
+1. In terminal navigate to source folder and type: `vagrant ssh`
+2. `cd /vagrant/service/api-task`
+3. `composer test`
